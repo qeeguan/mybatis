@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>${requestScope.message }
+<body>
+	<a href="loginForm2">测试@ModelAttribute注释void返回值的方法</a>
 </body>
 </html>
