@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="loginForm2">测试@ModelAttribute注释void返回值的方法</a>
-	<br>
-	<a href="loginForm4">测试@ModelAttribute和@RequestMapping同时注释一个方法</a>
-	<br>
-	<a href="loginForm5">测试@ModelAttribute注释一个方法的参数</a>
+	账户名：${requestScope.loginname }
+	<br> 密码：${requestScope.password }
 </body>
 </html>
