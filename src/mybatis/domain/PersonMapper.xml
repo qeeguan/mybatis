@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指用户自定义的命名空间。 -->
+<mapper namespace="mybatis.domain.PersonMapper">
+	<insert id="save" parameterType="mybatis.domain.Person"
+		useGeneratedKeys="true">
+		insert into tb_person(name,sex,age) values
+		(#{name},#{sex},#{age})
+	</insert>
+	<resultMap type="mybatis.domain.Person" id="resultmap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="age" column="age" />
+	</resultMap>
+	<select id="select" resultMap="resultmap">
+		select * from tb_person
+	</select>
+	<resultMap type="mybatis.domain.Student" id="student">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="age" column="age" />
+		<association property="clazz" column="clazz_id"
+			javaType="mybatis.domain.Clazz" select="selectClazzWithId" />
+	</resultMap>
+	<select id="selectClazzWithId" resultType="mybatis.domain.Clazz">
+		select * from tb_clazz
+		where id = #{id}
+	</select>
+	<select id="selectStudent" resultMap="student">
+		select * from tb_student
+	</select>
+	<resultMap type="mybatis.domain.Clazz" id="clazz">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property="students" javaType="ArrayList"
+			column="id" ofType="mybatis.domain.Student" select="selectStudentWithId"></collection>
+	</resultMap>
+	<select id="selectStudentWithId" resultType="mybatis.domain.Student">
+		select * from
+		tb_student where clazz_id = #{id}
+	</select>
+	<select id="selectClazz" resultMap="clazz">
+		select * from tb_clazz
+	</select>
+</mapper>
