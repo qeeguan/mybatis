@@ -11,13 +11,19 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import mybatis.domain.Person;
 
 public class MyBatisTest {
+	/**
+	 * æ ¹æ®idæŸ¥è¯¢Person
+	 * æ–¹æ³•åå’Œå‚æ•°å¿…é¡»å’ŒXMLä¸­<select...>å…ƒç´ çš„idå±æ€§å’Œparametertypeå±æ€§ä¸€è‡´
+	 * @param args
+	 * @throws IOException
+	 */
 
 	public static void main(String[] args) throws IOException {
 		InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 		SqlSession session = factory.openSession();
-		Person person = new Person("admin", "ÄĞ", 26);
-		// ·µ»ØÖ´ĞĞSQLÓï¾äÓ°ÏìµÄĞĞÊı
+		Person person = new Person("admin", "ï¿½ï¿½", 26);
+		// ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int a = session.insert("mybatis.domain.PersonMapper.save", person);
 		session.commit();
 		session.close();

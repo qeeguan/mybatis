@@ -25,7 +25,7 @@
 		<association property="clazz" column="clazz_id"
 			javaType="mybatis.domain.Clazz" select="selectClazzWithId" />
 	</resultMap>
-	<select id="selectClazzWithId" resultType="mybatis.domain.Clazz">
+	<select id="selectClazzWithId" resultType="mybatis.domain.Clazz" useCache="true">
 		select * from tb_clazz
 		where id = #{id}
 	</select>
